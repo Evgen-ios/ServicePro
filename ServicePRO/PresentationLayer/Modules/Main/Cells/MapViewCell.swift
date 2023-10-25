@@ -1,5 +1,5 @@
 //
-//  MapView.swift
+//  MapViewCell.swift
 //  ServicePRO
 //
 //  Created by Evgeniy Goncharov on 24.10.2023.
@@ -9,11 +9,9 @@ import UIKit
 import YandexMapsMobile
 import SnapKit
 
-final class MapView: LoadableView {
+final class MapViewCell: LoadableCollectionViewCell {
     
     private lazy var mapView: YMKMapView = YBaseMapView().mapView
-    
-    private lazy var mapBoxView = MapView()
     
     // MARK: - Inherited Methods
     override func layoutSubviews() {
@@ -22,24 +20,19 @@ final class MapView: LoadableView {
     }
     
     override func setup() {
+        super.setup()
         setupViews()
     }
     
-    init() {
-        super.init(frame: CGRect.zero)
-    }
-    
-    public required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func configure(model: MapModel){
+    func configure(_ model: MapModel?){
+        guard let model else { return }
         setupMap(model: model)
     }
     
     // MARK: - Private Methods
     private func setupViews() {
         addSubview(mapView)
+        layout()
     }
     
     private func setupMap(model: MapModel) {
@@ -63,14 +56,14 @@ final class MapView: LoadableView {
             placemark.setTextWithText("\($0.lat), \($0.long)", style: {
                 let textStyle = YMKTextStyle()
                 textStyle.size = 8.0
-                textStyle.placement = .right
+                textStyle.placement = .top
                 return textStyle
             }())
         }
     }
     
     private func layout() {
-        mapView.snp.makeConstraints {
+        mapView.snp.remakeConstraints {
             $0.leading.trailing.top.equalToSuperview()
             $0.bottom.equalToSuperview()
         }

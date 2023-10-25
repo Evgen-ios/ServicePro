@@ -26,7 +26,7 @@ final class HeaderView: LoadableView {
     }
     
     private lazy var logoLable = UILabel().apply {
-        $0.text = "СЕРВИСПРО"
+        $0.text = Constants.Strings.logoLable
         $0.textColor = .white
         $0.font = UIFont.systemFont(ofSize: 26, weight: .bold)
         $0.sizeToFit()
@@ -89,8 +89,8 @@ final class HeaderView: LoadableView {
         bellImage.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.right.equalTo(avatarImage.snp.left).offset(-16)
-            $0.height.equalTo(30)
-            $0.width.equalTo(30)
+            $0.height.equalTo(26)
+            $0.width.equalTo(26)
         }
     }
 }

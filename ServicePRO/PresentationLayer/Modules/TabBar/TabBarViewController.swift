@@ -9,22 +9,15 @@ import UIKit
 import DITranquillity
 import MintRouter
 
-// MARK: - View Controller
 final class TabBarViewController: UITabBarController {
     
-    // MARK: - UI
+    // MARK: - Properties
     var viewModel: TabBarViewModel!
-    private var bag = CancelBag()
-    private var tabBarTag: Bool = true
     
-    // MARK: - Life cycle
+    private var tabBarTag: Bool = true
     var items: [TabBarItem] = []
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel.input.viewWillAppear.send(())
-    }
-    
+    // MARK: - Inherited Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTabBar()
@@ -33,20 +26,17 @@ final class TabBarViewController: UITabBarController {
     // MARK: - Setup
     func createItems(container: DIContainer) -> [TabBarItem] {
         items = [
-            TabBarItem(type: .main, container: container, withNavBar: false, title: "Главная"),
-            TabBarItem(type: .list, container: container, withNavBar: false, title: "Заявки"),
-            TabBarItem(type: .add, container: container, withNavBar: false, title: ""),
-            TabBarItem(type: .car, container: container, withNavBar: false, title: "Техника"),
-            TabBarItem(type: .map, container: container, withNavBar: false, title: "Карта")
+            TabBarItem(type: .main, container: container, withNavBar: false, title: Constants.TabBar.main),
+            TabBarItem(type: .list, container: container, withNavBar: false, title: Constants.TabBar.list),
+            TabBarItem(type: .add, container: container, withNavBar: false, title: Constants.TabBar.add),
+            TabBarItem(type: .car, container: container, withNavBar: false, title: Constants.TabBar.car),
+            TabBarItem(type: .map, container: container, withNavBar: false, title: Constants.TabBar.map)
         ]
         return items
     }
     
     private func configureTabBar() {
         let white = MainTheme.shared.appColors.white
-//        self.tabBar.barTintColor = white
-//        UITabBar.appearance().tintColor = white
-        
         self.tabBar.tintColor = white
         UITabBar.appearance().barTintColor = white
         

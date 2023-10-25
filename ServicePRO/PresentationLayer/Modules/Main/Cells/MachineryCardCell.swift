@@ -6,76 +6,108 @@
 //
 
 import UIKit
-import Combine
+import SnapKit
 
 final class MachineryCardCell: LoadableCollectionViewCell {
     
     // MARK: - Properties
-    private var bag = CancelBag()
-    
-    private lazy var logoImageView = UIImageView().apply {
+    private lazy var progressView = UIProgressView().apply {
         $0.tintColor = .white
         $0.contentMode = .scaleAspectFill
+        $0.alpha = 0.5
     }
     
-    private lazy var headerLabel = UILabel().apply {
-        $0.font = UIFont.systemFont(ofSize: 28, weight: .bold)
+    private lazy var titleLable = UILabel().apply {
+        $0.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+        $0.textColor = .white
+        $0.sizeToFit()
+    }
+    
+    private lazy var iconImage = UIImageView().apply {
+        $0.image = UIImage(named: "car") ?? UIImage()
+        $0.clipsToBounds = true
+    }
+    
+    private lazy var timeLable = UILabel().apply {
+        $0.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         $0.textColor = .white
     }
     
-    private lazy var descriptionLabel = UILabel().apply {
-        $0.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+    private lazy var nameLable = UILabel().apply {
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         $0.textColor = .white
-        $0.numberOfLines = 0
     }
     
-    // MARK: - Life cycle
+    private lazy var vendorLable = UILabel().apply {
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        $0.textColor = .white
+    }
+    
+    // MARK: - Inherited Methods
     override func setup() {
         super.setup()
-        bind()
         setupViews()
-        layout()
     }
     
     // MARK: Configure
     func configure(_ model: MachineryCardModel) {
-
+        
+        progressView.progress = 20.0 / 30.0;
+        titleLable.text = "\(model.id)"
+        iconImage.image = model.logo
+        timeLable.text = model.time
+        nameLable.text = model.name
+        vendorLable.text = model.vendor
     }
-    
-    func bind() {}
     
     //MARK: Setup views
     private func setupViews() {
-        layer.cornerRadius = 16
+        layer.cornerRadius = 12
+        layer.backgroundColor = MainTheme.shared.appColors.machineryCell.cgColor
         clipsToBounds = true
         
-        [headerLabel,
-         descriptionLabel,
-         logoImageView]
-            .forEach {
-                addSubview($0)
-            }
+        [progressView, titleLable, iconImage, timeLable, nameLable, vendorLable].forEach {
+            addSubview($0)
+        }
+        
+        layout()
     }
     
     //MARK: Layout
     private func layout() {
-        headerLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(16)
-            $0.left.right.equalToSuperview().offset(16)
+        progressView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(8)
+            $0.left.equalToSuperview().offset(8)
+            $0.right.equalToSuperview().inset(8)
+            $0.height.equalTo(3)
         }
         
-        logoImageView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.right.equalToSuperview().inset(30)
-            $0.size.equalTo(80)
+        titleLable.snp.makeConstraints {
+            $0.top.equalTo(progressView.snp.bottom).offset(4)
+            $0.left.equalToSuperview().inset(8)
         }
         
-        descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(headerLabel.snp.bottom).offset(8)
-            $0.left.equalToSuperview().offset(16)
-            $0.right.equalTo(logoImageView.snp_leftMargin).offset(16)
-            $0.bottom.equalToSuperview().offset(16).priority(.low)
+        iconImage.snp.makeConstraints {
+            $0.centerY.equalTo(titleLable)
+            $0.left.equalTo(titleLable.snp.right).offset(4)
+            $0.size.equalTo(24)
         }
+        
+        timeLable.snp.makeConstraints {
+            $0.top.equalTo(titleLable.snp.bottom).offset(4)
+            $0.left.equalToSuperview().inset(8)
+        }
+        
+        nameLable.snp.makeConstraints {
+            $0.top.equalTo(timeLable.snp.bottom).offset(4)
+            $0.left.equalToSuperview().inset(8)
+        }
+        
+        vendorLable.snp.makeConstraints {
+            $0.top.equalTo(nameLable.snp.bottom).offset(8)
+            $0.left.equalToSuperview().inset(8)
+        }
+        
     }
 }
 

@@ -16,7 +16,6 @@ extension UIViewController {
 class SwipeNavigationController: UINavigationController {
 
     // MARK: - Lifecycle
-
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         delegate = self
@@ -43,7 +42,6 @@ class SwipeNavigationController: UINavigationController {
     }
 
     // MARK: - Overrides
-
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         duringPushAnimation = true
         super.pushViewController(viewController, animated: animated)
@@ -58,7 +56,6 @@ class SwipeNavigationController: UINavigationController {
     }
 
     // MARK: - Private Properties
-
     fileprivate var duringPushAnimation = false
 
 }
