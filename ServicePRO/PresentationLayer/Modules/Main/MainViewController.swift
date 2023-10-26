@@ -193,7 +193,6 @@ extension MainViewController {
         return section
     }
     
-    // Create header for section
     private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         .init(layoutSize: .init(widthDimension: .fractionalWidth(0.5), heightDimension: .absolute(16)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
     }

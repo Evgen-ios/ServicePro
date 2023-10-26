@@ -52,7 +52,7 @@ final class MachineryCardCell: LoadableCollectionViewCell {
     // MARK: Configure
     func configure(_ model: MachineryCardModel) {
         
-        progressView.progress = 20.0 / 30.0;
+        progressView.progress = 20.0 / Float.random(in: 10..<90);
         titleLable.text = "\(model.id)"
         iconImage.image = model.logo
         timeLable.text = model.time

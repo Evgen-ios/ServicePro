@@ -48,10 +48,10 @@ final class MainViewModel {
         guard let car = UIImage(named: "car") else { return }
         let name = "Трактор"
         let vendor = "АгроТехник"
-        let time = "15: 00  05.06"
         var array: [MachineryCardModel] = []
         for i in 1...10 {
-            let model = MachineryCardModel(id: i, name: name, time: time, vendor: vendor, logo: car)
+            let randomTime = "1\(Int.random(in: 0..<9)): 00  05.06"
+            let model = MachineryCardModel(id: i, name: name, time: randomTime, vendor: vendor, logo: car)
             array.append(model)
         }
         
