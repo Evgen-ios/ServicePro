@@ -11,6 +11,7 @@ import Combine
 final class HeaderView: LoadableView {
     
     // MARK: - Private Lazy Properties
+    private var bag = CancelBag()
     private lazy var avatarImage = UIImageView().apply {
         $0.image = UIImage(named: "avatar") ?? UIImage()
     }
@@ -32,8 +33,8 @@ final class HeaderView: LoadableView {
         $0.sizeToFit()
     }
     
-    private lazy var bellImage = UIImageView().apply {
-        $0.image = UIImage(named: "bell") ?? UIImage()
+    private lazy var bellImage = UIButton().apply {
+        $0.setImage(UIImage(named: "bell"), for: .normal)
     }
     
     

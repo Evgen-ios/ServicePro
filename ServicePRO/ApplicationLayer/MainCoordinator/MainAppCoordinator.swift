@@ -41,7 +41,7 @@ open class MainAppCoordinator: Loggable {
     
     // MARK: - Setup
     private func setupYandexMapsApiKey() {
-        YMKMapKit.setApiKey("2d17ac80-160e-4e51-9f1f-3b25e9454211")
+        YMKMapKit.setApiKey(Constants.Keys.yandexMapsKey)
         YMKMapKit.setLocale("ru_RU")
         YMKMapKit.sharedInstance()
     }
