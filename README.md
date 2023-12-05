@@ -8,4 +8,4 @@
 * [SnapKit](https://github.com/SnapKit/SnapKit)
 
 ## Screenshot
-![Screenshots](ServicePro/Screenshots/1.png?raw=true)
+![Screenshots](Screenshots/1.png?raw=true)
