@@ -4,7 +4,6 @@
   
 ### Dependencies
 * [DITranquillity](https://github.com/ivlevAstef/DITranquillity)
-* [Moya](https://github.com/Moya/Moya)
 * [SnapKit](https://github.com/SnapKit/SnapKit)
 
 ## Screenshot
